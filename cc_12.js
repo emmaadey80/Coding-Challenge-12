@@ -53,6 +53,20 @@ productForm.addEventListener('submit', (event) => { // Adding an event listener 
 });
 
 function removeInventoryItem(item) { 
-    inventoryList.removeChild(item); //Use removeChild within the inventory list to remove the clicked item.
+    inventoryList.removeChild(item); //Use removeChild within the inventory list to remove the clicked item
 };
 
+//Task 4 - Demonstrated Event Bubbling in Customer Section
+const customerCards = document.querySelectorAll(".customer-card"); //using querySelectorAll
+const customerSection = document.getElementById("customerSection"); //using getElementById 
+
+customerCards.forEach(card => { //Looping through customerCards array
+    card.addEventListener("click", (event) => { // Attach click event
+        console.log(`User clicked ${event.target.textContent}`); // customer card's click event handler log a message
+        event.stopPropagation(); //parent's event handler does not trigger 
+    });    
+});
+
+customerSection.addEventListener("click", () => { //Attach click event listener to the parent container card.
+    console.log(`User clicked customerSection`); //Logs a message
+});    
